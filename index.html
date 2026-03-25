@@ -4,158 +4,255 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>리뷰</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <style>
+    /* ===== JAMS 2.1 Design Tokens (CSS Custom Properties) ===== */
+    :root {
+      /* Primitive — Gray */
+      --gray-50: #f7f8f9;
+      --gray-100: #f0f1f3;
+      --gray-200: #dfe1e5;
+      --gray-300: #cdd0d6;
+      --gray-400: #b0b5bd;
+      --gray-500: #949ba8;
+      --gray-600: #768091;
+      --gray-700: #606876;
+      --gray-800: #3e434b;
+      --gray-900: #2b2e33;
+      --gray-950: #1a1a1e;
+
+      /* Primitive — Brand (JK Theme) */
+      --brand-primary: #1b55f6;
+      --brand-primary-light: #e8eefe;
+      --brand-primary-dark: #1444c4;
+
+      /* Primitive — Status */
+      --red-500: #fc3b3b;
+      --green-500: #0dbc7c;
+      --yellow-500: #f0b500;
+      --blue-600: #207cf4;
+
+      /* Semantic — Background (Light) */
+      --bg-primary: #ffffff;
+      --bg-secondary: var(--gray-50);
+      --bg-tertiary: var(--gray-100);
+      --bg-inverse: var(--gray-950);
+
+      /* Semantic — Typography (Light) */
+      --text-primary: var(--gray-950);
+      --text-secondary: var(--gray-800);
+      --text-tertiary: var(--gray-600);
+      --text-disabled: var(--gray-500);
+      --text-inverse: #ffffff;
+      --text-brand: var(--brand-primary);
+
+      /* Semantic — Line (Light) */
+      --line-primary: var(--gray-200);
+      --line-secondary: var(--gray-100);
+
+      /* Semantic — Icon (Light) */
+      --icon-primary: var(--gray-950);
+      --icon-secondary: var(--gray-600);
+      --icon-disabled: var(--gray-400);
+
+      /* Theme — Radius (JK) */
+      --radius-sm: 10px;
+      --radius-md: 10px;
+      --radius-lg: 10px;
+      --radius-xl: 12px;
+      --radius-xl2: 16px;
+      --radius-full: 999px;
+
+      /* Layout — Spacing */
+      --spacing-2: 2px;
+      --spacing-4: 4px;
+      --spacing-6: 6px;
+      --spacing-8: 8px;
+      --spacing-12: 12px;
+      --spacing-16: 16px;
+      --spacing-20: 20px;
+      --spacing-24: 24px;
+      --spacing-32: 32px;
+      --spacing-40: 40px;
+      --spacing-48: 48px;
+      --spacing-60: 60px;
+
+      /* Typography — Font */
+      --font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-regular: 400;
+      --font-medium: 500;
+      --font-semibold: 600;
+      --font-bold: 700;
+
+      /* Shadow */
+      --shadow-default: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    /* ===== Base Reset & Body ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-      background: #f5f5f5;
-      color: #222;
+      font-family: var(--font-family);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
       max-width: 430px;
       margin: 0 auto;
     }
 
     /* 리뷰 섹션 */
-    .section { padding: 24px 20px; }
+    .section { padding: var(--spacing-24) var(--spacing-20); }
     .section-title {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 16px;
+      font-size: 22px;          /* H2 */
+      font-weight: var(--font-bold);
+      letter-spacing: -0.5px;
+      margin-bottom: var(--spacing-16);
     }
 
     /* 관련성 카드 */
     .relevance-card {
-      background: #f0f0f0;
-      border-radius: 12px;
-      padding: 24px 20px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-24) var(--spacing-20);
     }
     .relevance-card h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 16px;
+      font-size: 16px;          /* B1 */
+      font-weight: var(--font-semibold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-16);
     }
     .relevance-card p {
-      font-size: 14px;
-      color: #444;
+      font-size: 14px;          /* B3 */
+      color: var(--text-secondary);
       line-height: 1.6;
-      margin-bottom: 12px;
+      margin-bottom: var(--spacing-12);
     }
 
     /* 구분선 */
     .divider {
-      height: 8px;
-      background: #222;
+      height: var(--spacing-8);
+      background: var(--bg-inverse);
     }
 
     /* 태그 + 이미지 섹션 */
-    .tags-section { padding: 24px 20px; }
+    .tags-section { padding: var(--spacing-24) var(--spacing-20); }
     .tags {
       display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: var(--spacing-8);
+      margin-bottom: var(--spacing-16);
       flex-wrap: wrap;
     }
     .tag {
-      background: #e8e8e8;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
-      font-size: 14px;
-      color: #333;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--line-primary);
+      border-radius: var(--radius-full);
+      padding: var(--spacing-8) var(--spacing-16);
+      font-family: var(--font-family);
+      font-size: 14px;          /* B3 */
+      font-weight: var(--font-medium);
+      color: var(--text-secondary);
       cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
     }
-    .tag:hover { background: #ddd; }
+    .tag:hover {
+      background: var(--brand-primary-light);
+      color: var(--brand-primary);
+      border-color: var(--brand-primary);
+    }
 
     .placeholder-image {
       width: 100%;
       height: 240px;
-      background: #999;
-      border-radius: 12px;
+      background: var(--gray-400);
+      border-radius: var(--radius-xl);
     }
 
     /* 잡플래닛 데이터 인사이트 */
-    .insight-section { padding: 24px 20px; }
+    .insight-section { padding: var(--spacing-24) var(--spacing-20); }
     .insight-section h2 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 16px;
+      font-size: 20px;          /* H3 */
+      font-weight: var(--font-bold);
+      letter-spacing: -0.5px;
+      margin-bottom: var(--spacing-16);
     }
 
     .insight-card {
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 24px 20px;
+      background: var(--bg-primary);
+      border: 1px solid var(--line-primary);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-24) var(--spacing-20);
+      box-shadow: var(--shadow-default);
     }
     .insight-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 6px;
+      font-size: 16px;          /* B1 */
+      font-weight: var(--font-bold);
+      margin-bottom: var(--spacing-6);
     }
     .insight-card .subtitle {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 20px;
+      font-size: 13px;          /* C1 */
+      color: var(--text-tertiary);
+      margin-bottom: var(--spacing-20);
     }
 
     .bar-row {
       display: flex;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: var(--spacing-12);
     }
     .bar-year {
       width: 50px;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 14px;          /* B3 */
+      font-weight: var(--font-semibold);
+      color: var(--text-secondary);
       flex-shrink: 0;
     }
     .bar-track {
       flex: 1;
       height: 14px;
-      background: #f0f0f0;
-      border-radius: 7px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-sm);
       overflow: hidden;
     }
     .bar-fill {
       height: 100%;
-      background: #333;
-      border-radius: 7px;
+      background: var(--brand-primary);
+      border-radius: var(--radius-sm);
       transition: width 0.6s ease;
     }
 
     .dots {
       display: flex;
       justify-content: center;
-      gap: 6px;
-      margin-top: 20px;
+      gap: var(--spacing-6);
+      margin-top: var(--spacing-20);
     }
     .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #ccc;
+      background: var(--gray-300);
     }
-    .dot.active { background: #666; }
+    .dot.active { background: var(--brand-primary); }
 
     /* 대중성 섹션 */
     .popularity-section {
-      margin: 24px 20px;
-      background: #333;
-      border-radius: 16px;
-      padding: 60px 20px;
+      margin: var(--spacing-24) var(--spacing-20);
+      background: var(--bg-inverse);
+      border-radius: var(--radius-xl2);
+      padding: var(--spacing-60) var(--spacing-20);
       text-align: center;
-      color: #fff;
+      color: var(--text-inverse);
     }
     .popularity-section h2 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 12px;
+      font-size: 22px;          /* H2 */
+      font-weight: var(--font-bold);
+      letter-spacing: -0.5px;
+      margin-bottom: var(--spacing-12);
     }
     .popularity-section p {
-      font-size: 15px;
-      color: #ccc;
+      font-size: 15px;          /* B2 */
+      color: var(--gray-500);
     }
 
-    .bottom-space { height: 40px; }
+    .bottom-space { height: var(--spacing-40); }
   </style>
 </head>
 <body>
