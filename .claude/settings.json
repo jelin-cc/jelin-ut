@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git fetch --quiet 2>/dev/null; BEHIND=$(git rev-list --count HEAD..@{u} 2>/dev/null || echo 0); if [ \"$BEHIND\" -gt 0 ]; then echo '{\"systemMessage\":\"[Git] 원격 저장소에 '\"$BEHIND\"'개의 새로운 커밋이 있습니다. 사용자에게 git pull을 실행할지 물어보세요.\"}'; else echo '{\"systemMessage\":\"[Git] 원격 저장소와 동기화되어 있습니다.\"}'; fi",
+            "timeout": 30,
+            "statusMessage": "Git 원격 저장소 확인 중..."
+          }
+        ]
+      }
+    ]
+  }
+}
